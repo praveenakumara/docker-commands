@@ -7,6 +7,7 @@ systemctl restart docker
 
 docker stop $(docker ps -a -q) --To stop all running containers
 docker rm $(docker ps -a -q)   --remove all stopped containers
+docker image prune -f -- remove unwanted images which has no tags
 docker image prune -a ---for removing dangling and ununsed images
 docker system prune --all ---will remove all unused images not just dangling ones
 docker rmi $(docker images --filter "dangling=true" -q --no-trunc) --- removing those dangling images
