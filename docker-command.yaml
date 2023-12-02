@@ -1,4 +1,19 @@
-usermod -aG docker jenkins
+usermod -aG docker jenkins or
+sudo usermod -aG docker $USER
+sudo newgrp docker
 chmod 666 /var/run/docker.sock
+systemctl restart docker
+
+
 docker stop $(docker ps -a -q) --To stop all running containers
 docker rm $(docker ps -a -q)   --remove all stopped containers
+docker image prune -a ---for removing dangling and ununsed images
+docker system prune --all ---will remove all unused images not just dangling ones
+docker rmi $(docker images --filter "dangling=true" -q --no-trunc) --- removing those dangling images
+
+docker system prune -a
+            WARNING! This will remove:
+            - all stopped containers
+            - all networks not used by at least one container
+            - all images without at least one container associated to them
+            - all build cache
